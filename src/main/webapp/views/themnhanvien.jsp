@@ -20,6 +20,7 @@
 <h1>Thêm nhân viên</h1>
 <%--@elvariable id="employee" type="com.fiti.nlu.employeemanager.employeemanager.entity.Employee"--%>
 <form:form action="/employee/add-employee" method = "POST" modelAttribute="employee">
+
     <div>
     <form:label path="employeeId">* Mã NV</form:label>
     <form:input path="employeeId"/>

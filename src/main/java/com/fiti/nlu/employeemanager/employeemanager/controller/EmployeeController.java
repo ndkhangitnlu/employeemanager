@@ -25,15 +25,15 @@ public class EmployeeController {
         model.addAttribute("employee", employeeService.getEmployeeById(employeeId).get());
         return "chitietnhanvien";
     }
-    @GetMapping(value="/add")
+    @RequestMapping(value="/add")
     public String getAddEmployee(Model model) {
         model.addAttribute("employee", new Employee());
         return "themnhanvien";
     }
-    @PostMapping(value="/add-employee")
-    public String postAddEmployee(Model model, @Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
+    @RequestMapping(value="/add-employee")
+    public String postAddEmployee( @Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:/employee/add";
+            return "themnhanvien";
         }
         employeeService.addEmployee(employee);
         return "redirect:/employee/list";

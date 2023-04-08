@@ -12,6 +12,6 @@ public class EmployeeIdConstraintValidator  implements ConstraintValidator<Exist
 private EmployeeService employeeService;
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return employeeService.existsEmployeeId(s);
+        return !employeeService.existsEmployeeId(s);
     }
 }

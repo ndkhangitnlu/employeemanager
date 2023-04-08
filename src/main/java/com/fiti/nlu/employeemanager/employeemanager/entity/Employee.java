@@ -15,8 +15,8 @@ import java.util.Date;
 @Table(name = "employee")
 public class Employee {
     @Id
-    @ExistEmployeeId
-    @NotBlank(message = "Mã nhân viên không được để trống")
+    @ExistEmployeeId(message = "Mã nhân viên đã tồn tại")
+//    @NotBlank(message = "Mã nhân viên không được để trống")
     private String employeeId;
     @NotBlank(message = "Họ tên không được để trống")
     private String name;
