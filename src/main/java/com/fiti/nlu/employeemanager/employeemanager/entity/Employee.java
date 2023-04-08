@@ -1,6 +1,5 @@
 package com.fiti.nlu.employeemanager.employeemanager.entity;
 
-import com.fiti.nlu.employeemanager.employeemanager.validator.ExistEmployeeId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -15,8 +14,7 @@ import java.util.Date;
 @Table(name = "employee")
 public class Employee {
     @Id
-    @ExistEmployeeId(message = "Mã nhân viên đã tồn tại")
-//    @NotBlank(message = "Mã nhân viên không được để trống")
+    @NotBlank(message = "Mã nhân viên không được để trống")
     private String employeeId;
     @NotBlank(message = "Họ tên không được để trống")
     private String name;

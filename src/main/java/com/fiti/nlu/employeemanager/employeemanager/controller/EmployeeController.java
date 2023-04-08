@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,13 +26,16 @@ public class EmployeeController {
         model.addAttribute("employee", employeeService.getEmployeeById(employeeId).get());
         return "chitietnhanvien";
     }
-    @RequestMapping(value="/add")
+    @GetMapping(value="/add")
     public String getAddEmployee(Model model) {
         model.addAttribute("employee", new Employee());
         return "themnhanvien";
     }
-    @RequestMapping(value="/add-employee")
-    public String postAddEmployee( @Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
+    @PostMapping(value="/add-employee")
+    public String postAddEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
+        if(employeeService.existsEmployeeId(employee.getEmployeeId())) {
+            result.addError(new FieldError("employee", "employeeId", "Mã nhân viên đã tồn tại"));
+        }
         if (result.hasErrors()) {
             return "themnhanvien";
         }
